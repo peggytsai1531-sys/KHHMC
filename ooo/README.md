@@ -1,6 +1,6 @@
 # OOO 歷史報表
 
-每日 T114 Out of Order 報表的分析結果，依月份存放於 `history/YYYY-MM/`。
+每日 OOO 故障房報表（房務組轉寄信，主旨如「轉寄: NOV23 OOO」，附件 PDF；報表日期＝主旨日期前一天）的分析結果，依月份存放於 `history/YYYY-MM/`。
 
 - `YYYY-MM-DD_rooms.csv`：當日已生效 OOO 房號明細（含連續天數）
 - `YYYY-MM-DD_diff.csv`：與前一份報表的差異（新增／解除／持續）
