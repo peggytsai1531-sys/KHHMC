@@ -117,8 +117,10 @@ def is_active(rec, report_date):
     d = _mdy(report_date)
     return _mdy(rec['from']) <= d <= _mdy(rec['to'])
 
-def summarize(pdf_path):
+def summarize(pdf_path, date_override=None):
     report_date, recs = parse(pdf_path)
+    if date_override:
+        report_date = date_override  # 以信件主旨日期（隔天報表）為報表日
     cat_c = collections.Counter(); sub_c = collections.Counter()
     room_cat = {}
     for r in recs:
@@ -154,7 +156,8 @@ def summarize(pdf_path):
     }
 
 if __name__ == '__main__':
-    out = summarize(sys.argv[1])
+    ov = sys.argv[sys.argv.index('--date') + 1] if '--date' in sys.argv else None
+    out = summarize(sys.argv[1], ov)
     if '--json' in sys.argv:
         with open(sys.argv[sys.argv.index('--json') + 1], 'w', encoding='utf-8') as f:
             json.dump(out, f, ensure_ascii=False, indent=1)
